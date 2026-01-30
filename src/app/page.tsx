@@ -446,7 +446,7 @@ export default function Home() {
           <Separator className="mb-8 bg-purple-500/10" />
           
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© 2026 VeroMarket. All rights reserved.</p>
+            <p>© 2026 Vero Market. All rights reserved.</p>
           </div>
         </div>
       </footer>
