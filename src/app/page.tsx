@@ -101,7 +101,7 @@ const howItWorks = [
   {
     step: 2,
     title: "Connect Wallet",
-    description: "Link your Web3 wallet in seconds. Support for all major wallets.",
+    description: "Your wallet is auto-generated after you sign up so you're good to go.",
     icon: Wallet,
   },
   {
@@ -302,7 +302,7 @@ export default function Home() {
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Built for{" "}
-              <span className="gradient-text">Serious Traders</span>
+              <span className="gradient-text">Everyone!</span>
             </h2>
             <p className="text-muted-foreground text-lg">
               A new paradigm for information discovery through market mechanisms
