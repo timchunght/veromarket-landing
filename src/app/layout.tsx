@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VeroMarket | Predict the Future, Own the Outcome",
+  title: "Vero Market | Predict the Future, Own the Outcome",
   description: "The next generation prediction market platform. Trade on real-world events, leverage collective intelligence, and earn from your foresight.",
   keywords: ["prediction market", "crypto", "trading", "forecasting", "decentralized"],
 };

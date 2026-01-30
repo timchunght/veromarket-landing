@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import {
   TrendingUp,
@@ -14,13 +13,13 @@ import {
   BarChart3,
   Users,
   Clock,
-  ArrowRight,
-  ChevronRight,
   Sparkles,
   Target,
   Wallet,
   LineChart,
+  Activity,
 } from "lucide-react";
+import Image from "next/image";
 
 const featuredMarkets = [
   {
@@ -78,7 +77,7 @@ const features = [
   {
     icon: Zap,
     title: "Instant Settlement",
-    description: "Get paid immediately when markets resolve. No waiting, no delays, no intermediaries.",
+    description: "Settle immediately when markets resolve. No waiting, no delays, no intermediaries.",
   },
   {
     icon: Globe,
@@ -88,7 +87,7 @@ const features = [
   {
     icon: BarChart3,
     title: "Deep Liquidity",
-    description: "Automated market makers ensure you can always buy or sell at fair prices.",
+    description: "Automated market makers ensure you can always trade at fair prices.",
   },
 ];
 
@@ -120,55 +119,54 @@ const howItWorks = [
 ];
 
 const stats = [
-  { value: "$847M+", label: "Total Volume" },
-  { value: "2.1M+", label: "Active Traders" },
-  { value: "15,000+", label: "Markets Created" },
-  { value: "99.9%", label: "Uptime" },
+  { value: "10+", label: "Event Categories" },
+  { value: "50+", label: "Active Events" },
+  { value: "350+", label: "Total Markets" },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <div className="min-h-screen bg-background overflow-hidden relative">
+      {/* Background orbs */}
+      <div className="orb orb-purple w-[600px] h-[600px] -top-48 -left-48 fixed" />
+      <div className="orb orb-pink w-[400px] h-[400px] top-1/3 -right-32 fixed" />
+      <div className="orb orb-purple w-[500px] h-[500px] bottom-0 left-1/3 fixed" />
+
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
+      <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-purple-500/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold">VeroMarket</span>
+              <Image src="/logo.png" alt="Vero Market" width={32} height={32} className="rounded-md" />
+              <span className="text-xl font-bold">Vero Market</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              <a href="#markets" className="text-muted-foreground hover:text-foreground transition-colors">Markets</a>
-              <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
-              <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Docs</a>
+              <a href="#markets" className="text-muted-foreground hover:text-primary transition-colors">Markets</a>
+              <a href="#features" className="text-muted-foreground hover:text-primary transition-colors">Features</a>
+              <a href="#how-it-works" className="text-muted-foreground hover:text-primary transition-colors">How It Works</a>
             </div>
             <div className="flex items-center gap-3">
-              <Button variant="ghost" className="hidden sm:flex">Sign In</Button>
-              <Button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold">
-                Launch App
-              </Button>
+              <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span>Live</span>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32">
+      <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-32">
         {/* Background effects */}
         <div className="absolute inset-0 radial-glow" />
-        <div className="absolute inset-0 grid-pattern opacity-30 animate-grid" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 grid-pattern" />
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium border-primary/30 bg-primary/10">
-              <Sparkles className="w-3.5 h-3.5 mr-2" />
-              The Future of Forecasting
-            </Badge>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8">
+              <Activity className="w-4 h-4 text-purple-400" />
+              <span className="text-sm font-medium text-purple-300">Prediction Markets Trading</span>
+            </div>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
               Predict the Future,{" "}
@@ -180,23 +178,29 @@ export default function Home() {
               The most accurate forecasts come from those with skin in the game.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold px-8 h-12 text-base animate-pulse-glow">
-                Start Trading
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto h-12 text-base border-border/50 hover:bg-secondary">
-                Explore Markets
-                <ChevronRight className="ml-1 w-5 h-5" />
-              </Button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+              <a 
+                href="https://apps.apple.com/app/veromarket" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:scale-105 transition-transform"
+              >
+                <Image 
+                  src="/app-store.svg" 
+                  alt="Download on the App Store" 
+                  width={150} 
+                  height={50}
+                  className="h-14 w-auto"
+                />
+              </a>
             </div>
 
-            {/* Live stats ticker */}
-            <div className="flex flex-wrap items-center justify-center gap-8 text-sm">
+            {/* Live stats */}
+            <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                  <div className="text-muted-foreground">{stat.label}</div>
+                <div key={index} className="text-center p-4 rounded-xl bg-purple-500/5 border border-purple-500/10">
+                  <div className="text-2xl sm:text-3xl font-bold text-white stat-value">{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -209,77 +213,79 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-2">Trending Markets</h2>
-              <p className="text-muted-foreground">The most active predictions right now</p>
+              <div className="flex items-center gap-2 mb-2">
+                <BarChart3 className="w-5 h-5 text-purple-400" />
+                <span className="text-sm font-medium text-purple-400 uppercase tracking-wider">Live Markets</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold">Example Markets</h2>
             </div>
-            <Button variant="outline" className="border-border/50">
-              View All Markets
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {featuredMarkets.map((market) => (
-              <Card key={market.id} className="glass border-border/50 hover:border-primary/50 transition-all duration-300 group cursor-pointer">
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <Badge variant="secondary" className="text-xs">
-                        {market.category}
-                      </Badge>
-                      {market.trending && (
-                        <Badge className="bg-primary/20 text-primary border-0 text-xs">
-                          <TrendingUp className="w-3 h-3 mr-1" />
-                          Trending
-                        </Badge>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                      <Clock className="w-3 h-3" />
-                      {market.endDate}
-                    </div>
-                  </div>
-                  <CardTitle className="text-lg font-semibold leading-tight group-hover:text-primary transition-colors">
-                    {market.question}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-4 mb-4">
-                    {/* Probability bar */}
-                    <div className="flex-1 h-3 bg-secondary rounded-full overflow-hidden flex">
-                      <div 
-                        className="h-full bg-gradient-to-r from-success to-success/80 transition-all duration-500"
-                        style={{ width: `${market.yesPrice}%` }}
-                      />
-                      <div 
-                        className="h-full bg-gradient-to-r from-destructive/80 to-destructive transition-all duration-500"
-                        style={{ width: `${market.noPrice}%` }}
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-2">
-                        <span className="text-success font-semibold">YES {market.yesPrice}¢</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-destructive font-semibold">NO {market.noPrice}¢</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <BarChart3 className="w-3.5 h-3.5" />
-                        ${market.volume}
+              <div 
+                key={market.id} 
+                className="trading-card rounded-xl p-5 cursor-pointer"
+              >
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-300 text-xs font-medium">
+                      {market.category}
+                    </span>
+                    {market.trending && (
+                      <span className="px-2.5 py-1 rounded-md bg-green-500/20 text-green-400 text-xs font-medium flex items-center gap-1">
+                        <TrendingUp className="w-3 h-3" />
+                        Hot
                       </span>
-                      <span className={`flex items-center gap-0.5 font-medium ${market.change > 0 ? 'text-success' : 'text-destructive'}`}>
-                        {market.change > 0 ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
-                        {Math.abs(market.change)}%
-                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <Clock className="w-3 h-3" />
+                    {market.endDate}
+                  </div>
+                </div>
+                
+                <h3 className="text-lg font-semibold mb-4 text-white/90">
+                  {market.question}
+                </h3>
+                
+                {/* Probability bar */}
+                <div className="probability-bar h-2 mb-4">
+                  <div className="flex h-full">
+                    <div 
+                      className="probability-yes transition-all duration-500"
+                      style={{ width: `${market.yesPrice}%` }}
+                    />
+                    <div 
+                      className="probability-no transition-all duration-500"
+                      style={{ width: `${market.noPrice}%` }}
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-green-500" />
+                      <span className="text-green-400 font-mono font-semibold">YES {market.yesPrice}¢</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-red-500" />
+                      <span className="text-red-400 font-mono font-semibold">NO {market.noPrice}¢</span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="flex items-center gap-3 text-sm">
+                    <span className="text-muted-foreground flex items-center gap-1">
+                      <BarChart3 className="w-3.5 h-3.5" />
+                      ${market.volume}
+                    </span>
+                    <span className={`flex items-center gap-0.5 font-mono font-medium ${market.change > 0 ? 'price-up' : 'price-down'}`}>
+                      {market.change > 0 ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
+                      {market.change > 0 ? '+' : ''}{market.change}%
+                    </span>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -287,38 +293,36 @@ export default function Home() {
 
       {/* Features Section */}
       <section id="features" className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+        <div className="absolute inset-0 radial-glow-bottom" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <Badge variant="secondary" className="mb-4 px-3 py-1">
-              Why VeroMarket
-            </Badge>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 mb-4">
+              <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+              <span className="text-sm font-medium text-purple-300">Why Vero Market?</span>
+            </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Built for the Future of{" "}
-              <span className="gradient-text">Decentralized Prediction</span>
+              Built for{" "}
+              <span className="gradient-text">Serious Traders</span>
             </h2>
             <p className="text-muted-foreground text-lg">
               A new paradigm for information discovery through market mechanisms
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {features.map((feature, index) => (
-              <Card 
+              <div 
                 key={index} 
-                className="glass border-border/50 hover:border-primary/50 transition-all duration-300 group"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="trading-card rounded-xl p-6 hover-glow"
               >
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/30 to-purple-600/10 flex items-center justify-center mb-4 border border-purple-500/20">
+                  <feature.icon className="w-6 h-6 text-purple-400" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-white">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
             ))}
           </div>
         </div>
@@ -328,11 +332,12 @@ export default function Home() {
       <section id="how-it-works" className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <Badge variant="secondary" className="mb-4 px-3 py-1">
-              Getting Started
-            </Badge>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 mb-4">
+              <Target className="w-3.5 h-3.5 text-purple-400" />
+              <span className="text-sm font-medium text-purple-300">Getting Started</span>
+            </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Start Predicting in{" "}
+              Start Trading in{" "}
               <span className="gradient-text">Four Simple Steps</span>
             </h2>
             <p className="text-muted-foreground text-lg">
@@ -344,18 +349,18 @@ export default function Home() {
             {howItWorks.map((item, index) => (
               <div key={index} className="relative">
                 {index < howItWorks.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-[60%] w-full h-0.5 bg-gradient-to-r from-primary/50 to-transparent" />
+                  <div className="hidden lg:block absolute top-10 left-[60%] w-full h-px bg-gradient-to-r from-purple-500/50 to-transparent" />
                 )}
                 <div className="flex flex-col items-center text-center">
                   <div className="relative mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center neon-border">
-                      <item.icon className="w-8 h-8 text-primary-foreground" />
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center glow-purple">
+                      <item.icon className="w-10 h-10 text-white" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-background border-2 border-primary flex items-center justify-center text-xs font-bold">
+                    <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-purple-500 border-2 border-background flex items-center justify-center text-xs font-bold text-white">
                       {item.step}
                     </div>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-white">{item.title}</h3>
                   <p className="text-muted-foreground text-sm">{item.description}</p>
                 </div>
               </div>
@@ -364,80 +369,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="glass border-primary/30 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-accent/10" />
-            <CardContent className="relative py-12 sm:py-16">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-3xl sm:text-4xl lg:text-5xl font-bold gradient-text mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-muted-foreground font-medium">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="relative overflow-hidden border-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20" />
-            <div className="absolute inset-0 grid-pattern opacity-20" />
-            <CardContent className="relative py-16 sm:py-20 text-center">
+          <div className="relative overflow-hidden rounded-3xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 via-purple-800/30 to-purple-900/50" />
+            <div className="absolute inset-0 grid-pattern opacity-30" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
+            
+            <div className="relative py-16 sm:py-24 px-6 text-center">
               <div className="max-w-2xl mx-auto">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
-                  <Users className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium">Join 2.1M+ traders worldwide</span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 mb-6">
+                  <Users className="w-4 h-4 text-purple-300" />
+                  <span className="text-sm font-medium text-purple-200">Join traders worldwide</span>
                 </div>
                 
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white">
                   Ready to Trade on{" "}
                   <span className="gradient-text">What You Know?</span>
                 </h2>
                 
-                <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-                  Be the first to access new markets. Get exclusive updates and early access to features.
+                <p className="text-purple-200/80 text-lg mb-10 max-w-xl mx-auto">
+                  Be the first to access new markets.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
-                  <Input 
-                    type="email" 
-                    placeholder="Enter your email" 
-                    className="h-12 bg-input/50 border-border/50 focus:border-primary"
+                <a 
+                  href="https://apps.apple.com/app/veromarket" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block hover:scale-105 transition-transform"
+                >
+                  <Image 
+                    src="/app-store.svg" 
+                    alt="Download on the App Store" 
+                    width={150} 
+                    height={50}
+                    className="h-14 w-auto"
                   />
-                  <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold h-12 px-8">
-                    Get Early Access
-                  </Button>
-                </div>
-
-                <p className="text-xs text-muted-foreground mt-4">
-                  No spam, ever. Unsubscribe anytime.
-                </p>
+                </a>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-border/50">
+      <footer className="py-12 border-t border-purple-500/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-primary-foreground" />
-                </div>
-                <span className="text-xl font-bold">VeroMarket</span>
+                <Image src="/logo.png" alt="Vero Market" width={32} height={32} className="rounded-md" />
+                <span className="text-xl font-bold">Vero Market</span>
               </div>
               <p className="text-muted-foreground text-sm">
                 The next generation prediction market platform. Trade the future.
@@ -445,44 +428,25 @@ export default function Home() {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Product</h4>
+              <h4 className="font-semibold mb-4 text-white">Resources</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Markets</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Portfolio</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Leaderboard</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">API</a></li>
+                <li><a href="/support" className="hover:text-purple-400 transition-colors">Support</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Resources</h4>
+              <h4 className="font-semibold mb-4 text-white">Legal</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Support</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">FAQ</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Risk Disclosure</a></li>
+                <li><a href="/terms" className="hover:text-purple-400 transition-colors">Terms of Service</a></li>
+                <li><a href="/privacy-policy" className="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
               </ul>
             </div>
           </div>
           
-          <Separator className="mb-8 bg-border/50" />
+          <Separator className="mb-8 bg-purple-500/10" />
           
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <p>© 2026 VeroMarket. All rights reserved.</p>
-            <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-foreground transition-colors">Twitter</a>
-              <a href="#" className="hover:text-foreground transition-colors">Discord</a>
-              <a href="#" className="hover:text-foreground transition-colors">GitHub</a>
-            </div>
           </div>
         </div>
       </footer>
